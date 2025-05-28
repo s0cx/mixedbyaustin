@@ -53,8 +53,46 @@
       font-size: 0.875rem;
       color: #666;
     }
+
+    .under-construction-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #e0e0e0;
+      color: #555;
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-align: center;
+      padding: 0.4rem 0;
+      box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.05);
+      user-select: none;
+      z-index: 1000;
+    }
+
+    #mute-toggle {
+      position: fixed;
+      bottom: 2.2rem; /* just above banner */
+      left: 0.8rem;
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #999;
+      z-index: 1001;
+      transition: color 0.2s ease;
+    }
+
+    #mute-toggle:hover {
+      color: #222;
+    }
   </style>
-  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5f84174b8975453a8bc1f0f4e911df5f"}'></script><!-- End Cloudflare Web Analytics --></head>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5f84174b8975453a8bc1f0f4e911df5f"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+</head>
+
 <body>
   <h1>Austin Simard</h1>
   <h2>Mix Engineer / Producer</h2>
@@ -76,32 +114,38 @@
     </p>
   </div>
 
- <footer>
+  <footer>
     <p>© 2025 Austin Simard. All rights reserved.</p>
     <p class="small-footer">Made by Austin with love ૮ ˶ᵔ ᵕ ᵔ˶ ა</p>
   </footer>
-  <style>
-  .under-construction-banner {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: #e0e0e0; /* light grey */
-    color: #555555; /* medium grey text */
-    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 500;
-    text-align: center;
-    padding: 0.4rem 0;
-    box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.05);
-    user-select: none;
-    z-index: 1000;
-  }
-</style>
 
-<div class="under-construction-banner">
-  Under Construction ヽ༼ຈل͜ຈ༽ﾉ
-</div>
+  <div class="under-construction-banner">
+    Under Construction ヽ༼ຈل͜ຈ༽ﾉ
+  </div>
 
+  <audio id="bg-audio" loop>
+    <source src="audio/website-BGM-loop.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <button id="mute-toggle" aria-label="Toggle background audio">🔈</button>
+
+  <script>
+    const audio = document.getElementById('bg-audio');
+    const toggle = document.getElementById('mute-toggle');
+
+    audio.volume = 0.1;
+    audio.muted = true;
+
+    window.addEventListener('click', () => {
+      audio.play();
+    }, { once: true });
+
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      audio.muted = !audio.muted;
+      toggle.textContent = audio.muted ? '🔇' : '🔈';
+    });
+  </script>
 </body>
 </html>

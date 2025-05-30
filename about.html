@@ -11,13 +11,20 @@
       margin: 0;
       padding: 2rem;
       font-family: 'Press Start 2P', monospace;
-      background: linear-gradient(to bottom right, #003928, #004e42);
+      background: linear-gradient(to bottom right, #000428, #004e92);
       color: #ffffff;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
       min-height: 100vh;
+      overflow-x: hidden;
+      cursor: none;
+      animation: fadeSlideIn 1.2s ease forwards;
+      opacity: 0;
+      transform: translateY(15px);
+    }
+
     @keyframes fadeSlideIn {
       to {
         opacity: 1;
@@ -96,6 +103,11 @@
     .y2k-header {
       font-size: 2rem;
       margin-bottom: 1rem;
+      background: linear-gradient(90deg, #00f0ff, #ff00ff, #00ffcc, #ffff00);
+      background-size: 400% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rainbowBG 5s infinite linear;
       text-shadow:
         0 0 8px #00ffff,
         0 0 15px #ff00ff,
@@ -104,6 +116,11 @@
       font-weight: 700;
       transition: text-shadow 0.3s ease;
       cursor: default;
+    }
+    .y2k-header:hover {
+      text-shadow:
+        0 0 20px #00ffff,
+        0 0 30px #ff00ff,
         0 0 40px #00ffcc,
         0 0 60px #ffff00;
     }
@@ -149,6 +166,13 @@
       text-shadow:
         0 0 10px #fff,
         0 0 18px currentColor,
+        0 0 30px currentColor;
+    }
+
+    a {
+      color: #00ffff;
+      text-decoration: none;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
       cursor: pointer;
     }
     a:hover {
@@ -175,11 +199,11 @@
 
     #toasty {
       position: fixed;
-      right: -150px;
-      bottom: 20%;
+      right: -160px;
+      bottom: 7%;
       width: 160px;
       z-index: 9999;
-      transition: right 0.5s ease-in-out;
+      transition: right 0.3s ease-in-out;
       pointer-events: none;
     }
   </style>
@@ -222,14 +246,14 @@
 
     const toasty = document.getElementById('toasty');
     function showToasty() {
-      toasty.style.right = '20px';
+      toasty.style.right = '0px';
       setTimeout(() => {
-        toasty.style.right = '-150px';
+        toasty.style.right = '-160px';
         scheduleNextToasty();
       }, 1000);
     }
     function scheduleNextToasty() {
-      const delay = Math.random() * 1500 + 10000;
+      const delay = Math.random() * 1500 + 8500;
       setTimeout(showToasty, delay);
     }
     scheduleNextToasty();

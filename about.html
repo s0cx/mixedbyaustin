@@ -196,6 +196,16 @@
     .cmd-line a {
       color: #00ffff;
     }
+
+    #toasty {
+      position: fixed;
+      right: -150px;
+      bottom: 20%;
+      width: 160px;
+      z-index: 9999;
+      transition: right 0.5s ease-in-out;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
@@ -211,26 +221,42 @@
       <p>👾 <a href="/">Return to homepage</a></p>
     </div>
   </div>
+
+  <!-- Toasty Guy -->
+  <img id="toasty" src="https://i.ibb.co/YBg6yT9Y/png-clipart-man-wearing-purple-crew-neck-shirt-dan-forden-mortal-kombat-ii-mortal-kombat-3-mortal-ko.png" alt="Toasty Guy" />
+
   <footer>
-    <p class="cmd-line">&gt; CONNECT: <a href="austin@mixedbyaustin.com">austin@mixedbyaustin.com</a> | <a href="https://instagram.com/austnwashere" target="_blank">@austnwashere</a> | <a href="https://soundcloud.com/mixedbyaustin" target="_blank">Mix Demos</a></p>
+    <p class="cmd-line">&gt; CONNECT: <a href="mailto:austin@mixedbyaustin.com">austin@mixedbyaustin.com</a> | <a href="https://instagram.com/austnwashere" target="_blank">@austnwashere</a> | <a href="https://soundcloud.com/mixedbyaustin" target="_blank">Mix Demos</a></p>
   </footer>
+
   <script>
     const cursor = document.getElementById('cursor');
-
     document.addEventListener('mousemove', (e) => {
       cursor.style.top = e.clientY + 'px';
       cursor.style.left = e.clientX + 'px';
-
       const trail = document.createElement('div');
       trail.className = 'trail';
       trail.style.top = e.clientY + 'px';
       trail.style.left = e.clientX + 'px';
       document.body.appendChild(trail);
-
       setTimeout(() => {
         trail.remove();
       }, 500);
     });
+
+    const toasty = document.getElementById('toasty');
+    function showToasty() {
+      toasty.style.right = '20px';
+      setTimeout(() => {
+        toasty.style.right = '-150px';
+        scheduleNextToasty();
+      }, 1000);
+    }
+    function scheduleNextToasty() {
+      const delay = Math.random() * 1500 + 10000;
+      setTimeout(showToasty, delay);
+    }
+    scheduleNextToasty();
   </script>
 </body>
 </html>

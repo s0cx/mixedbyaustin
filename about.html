@@ -19,7 +19,7 @@
       justify-content: flex-start;
       min-height: 100vh;
       overflow-x: hidden;
-      cursor: url('https://i.imgur.com/0P6vZcX.png'), auto;
+      cursor: none;
       animation: fadeSlideIn 1.2s ease forwards;
       opacity: 0;
       transform: translateY(15px);
@@ -61,6 +61,38 @@
       60% { transform: translate(1px, 1px); }
       80% { transform: translate(1px, -1px); }
       100% { transform: translate(0); }
+    }
+
+    .custom-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #fff;
+      pointer-events: none;
+      z-index: 9999;
+      box-shadow: 0 0 12px #ff66ff, 0 0 24px #00ffff;
+      mix-blend-mode: difference;
+    }
+
+    .trail {
+      position: fixed;
+      width: 7px;
+      height: 8px;
+      border-radius: 50%;
+      background: #00ffff;
+      pointer-events: none;
+      opacity: 0.9;
+      animation: fadeTrail 1s forwards;
+    }
+
+    @keyframes fadeTrail {
+      to {
+        opacity: 0;
+        transform: scale(0.5);
+      }
     }
 
     .y2k-about {
@@ -167,19 +199,38 @@
   </style>
 </head>
 <body>
+  <div class="custom-cursor" id="cursor"></div>
   <div class="y2k-about">
     <h1 class="y2k-header">~* About Me *~</h1>
     <div class="y2k-window" tabindex="0" aria-label="About Austin Simard">
-      <p>💾 Greetings, traveler of cyberspace!👽</p>
-      <p>I’m Austin, a sonic architect beaming signals from Vancouver, BC 🌐</p>
-      <p>I produce & mix tracks that <span class="blink">SLAP</span>, sparkle, and glitch in all the right ways. </p>
-      <p><i>Pop? Hip-hop? Something you dreamt? I'm here for it. 💿</i></p>
-      <p><span class="rainbow-text">Remote collabs welcome. Plug in & vibe. 🎧</span></p>
+      <p>💾 Greetings, traveler of cyberspace!</p>
+      <p>I’m Austin — mix engineer, producer & creative from Vancouver, BC 🌐</p>
+      <p>I specialize in punchy, polished mixes and genre-bending production that <span class="blink">SLAPS</span>. 💥</p>
+      <p><i>Indie pop? Hip-hop? Surreal bedroom demos? Let’s build it out. 💿</i></p>
+      <p><span class="rainbow-text">Remote collabs? Of course. Sync briefs? Let’s talk. 🎧</span></p>
       <p>👾 <a href="/">Return to homepage</a></p>
     </div>
   </div>
   <footer>
-    <p class="cmd-line">> CONNECT: <a href="mailto:austin@mixedbyaustin.com">austin@mixedbyaustin.com</a> | <a href="https://instagram.com/austnwashere" target="_blank">@austnwashere</a> | <a href="https://soundcloud.com/mixedbyaustin" target="_blank">Mix Demos</a></p>
+    <p class="cmd-line">&gt; CONNECT: <a href="austin@mixedbyaustin.com">austin@mixedbyaustin.com</a> | <a href="https://instagram.com/austnwashere" target="_blank">@austnwashere</a> | <a href="https://soundcloud.com/mixedbyaustin" target="_blank">Mix Demos</a></p>
   </footer>
+  <script>
+    const cursor = document.getElementById('cursor');
+
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.top = e.clientY + 'px';
+      cursor.style.left = e.clientX + 'px';
+
+      const trail = document.createElement('div');
+      trail.className = 'trail';
+      trail.style.top = e.clientY + 'px';
+      trail.style.left = e.clientX + 'px';
+      document.body.appendChild(trail);
+
+      setTimeout(() => {
+        trail.remove();
+      }, 500);
+    });
+  </script>
 </body>
 </html>

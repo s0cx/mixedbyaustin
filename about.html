@@ -19,13 +19,12 @@
       justify-content: flex-start;
       min-height: 100vh;
       overflow-x: hidden;
-      cursor: url('https://i.imgur.com/0P6vZcX.png'), auto; /* pixelated pointer */
+      cursor: url('https://i.imgur.com/0P6vZcX.png'), auto;
       animation: fadeSlideIn 1.2s ease forwards;
       opacity: 0;
       transform: translateY(15px);
     }
 
-    /* fade in + slide up */
     @keyframes fadeSlideIn {
       to {
         opacity: 1;
@@ -53,6 +52,15 @@
         transform: translateY(-10px);
         box-shadow: 0 0 30px #00ffccdd, 0 0 60px #00ffff88;
       }
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-1px, 1px); }
+      40% { transform: translate(-1px, -1px); }
+      60% { transform: translate(1px, 1px); }
+      80% { transform: translate(1px, -1px); }
+      100% { transform: translate(0); }
     }
 
     .y2k-about {
@@ -108,6 +116,9 @@
       text-shadow: 0 0 10px #ff66ff;
       cursor: default;
     }
+    .blink:hover {
+      animation: glitch 0.3s infinite;
+    }
 
     .rainbow-text {
       background: linear-gradient(to right, red, orange, yellow, green, cyan, blue, violet);
@@ -137,19 +148,38 @@
       text-shadow: 0 0 8px #ff66ff;
       text-decoration: underline;
     }
+
+    footer {
+      margin-top: 3rem;
+      font-size: 0.65rem;
+      color: #00ffffcc;
+      text-align: center;
+      border-top: 1px dashed #00ffff66;
+      padding-top: 1rem;
+    }
+    .cmd-line {
+      font-family: monospace;
+      color: #00ffcc;
+    }
+    .cmd-line a {
+      color: #00ffff;
+    }
   </style>
 </head>
 <body>
   <div class="y2k-about">
     <h1 class="y2k-header">~* About Me *~</h1>
     <div class="y2k-window" tabindex="0" aria-label="About Austin Simard">
-      <p>💾 Greetings, traveler of cyberspace!</p>
+      <p>💾 Greetings, traveler of cyberspace!👽</p>
       <p>I’m Austin, a sonic architect beaming signals from Vancouver, BC 🌐</p>
-      <p>I produce & mix tracks that <span class="blink">SLAP</span>, sparkle, and glitch in all the right ways. 💥</p>
+      <p>I produce & mix tracks that <span class="blink">SLAP</span>, sparkle, and glitch in all the right ways. </p>
       <p><i>Pop? Hip-hop? Something you dreamt? I'm here for it. 💿</i></p>
       <p><span class="rainbow-text">Remote collabs welcome. Plug in & vibe. 🎧</span></p>
       <p>👾 <a href="/">Return to homepage</a></p>
     </div>
   </div>
+  <footer>
+    <p class="cmd-line">> CONNECT: <a href="mailto:austin@mixedbyaustin.com">austin@mixedbyaustin.com</a> | <a href="https://instagram.com/austnwashere" target="_blank">@austnwashere</a> | <a href="https://soundcloud.com/mixedbyaustin" target="_blank">SoundCloud</a></p>
+  </footer>
 </body>
 </html>

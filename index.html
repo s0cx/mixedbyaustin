@@ -6,53 +6,53 @@
   <title>Austin Simard</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
     body {
       margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', sans-serif;
-      background-color: #ffffff;
-      color: #111111;
+      padding: 2rem;
+      font-family: 'Share Tech Mono', monospace;
+      background: radial-gradient(ellipse at center, #000428 0%, #004e92 100%);
+      color: #00ffff;
       display: flex;
       flex-direction: column;
+      justify-content: center;
       align-items: center;
-      justify-content: flex-start;
+      text-align: left;
       min-height: 100vh;
-      padding: 4rem 1rem;
-      line-height: 1.6;
+      overflow: hidden;
     }
 
-    h1, h2 {
-      margin: 0.5rem 0;
-      text-align: center;
-    }
-
-    a {
-      color: #0077cc;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .section {
+    .terminal-box {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid #00ffff44;
+      padding: 2rem;
       max-width: 600px;
-      margin: 2rem 0;
-      text-align: center;
+      width: 100%;
+      box-shadow: 0 0 15px #00ffff66;
     }
 
-    .rainbow {
-      background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      color: transparent;
+    .title-line, .connect-line {
+      font-size: 0.85rem;
+      text-shadow: 0 0 5px #00ffffaa;
+      margin-bottom: 1.2rem;
     }
 
-    footer {
-      margin-top: 4rem;
-      font-size: 0.875rem;
-      color: #666;
+    .enter-link {
+      display: inline-block;
+      color: #00ffff;
+      border: 1px dashed #00ffff;
+      padding: 0.5rem 1rem;
+      margin-top: 1rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: all 5s ease;
+      font-size: 0.85rem;
+    }
+    .enter-link:hover {
+      background: #00ffff;
+      color: #000;
+      box-shadow: 0 0 12px #00ffff;
     }
 
     .under-construction-banner {
@@ -73,7 +73,7 @@
 
     #mute-toggle {
       position: fixed;
-      bottom: 2.2rem; /* just above banner */
+      bottom: 2.2rem;
       left: 0.8rem;
       background: none;
       border: none;
@@ -83,43 +83,39 @@
       z-index: 1001;
       transition: color 0.2s ease;
     }
-
     #mute-toggle:hover {
-      color: #222;
+      color: #00ffff;
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.65rem;
+      color: #00ffffcc;
+      border-top: 1px dashed #00ffff66;
+      padding-top: 0.75rem;
+      width: 100%;
+      text-align: center;
+    }
+
+    footer a {
+      color: #00ffff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    footer a:hover {
+      color: #ff66ff;
+      text-shadow: 0 0 8px #ff66ff;
     }
   </style>
-
-  <!-- Cloudflare Web Analytics -->
-  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5f84174b8975453a8bc1f0f4e911df5f"}'></script>
-  <!-- End Cloudflare Web Analytics -->
 </head>
-
 <body>
-  <h1>Austin Simard</h1>
-  <h2>Mix Engineer / Producer</h2>
-  <div class="section">
-    <p>Based in Vancouver, BC. I work with pop and hip-hop artists to create clean, dynamic mixes that hit hard and feel <span class="rainbow">human</span>.</p>
-    <p>Remote and local projects welcome.</p>
+  <div class="terminal-box">
+    <div class="title-line">// AUSTIN SIMARD: MIX ENGINEER + PRODUCER</div>
+    <a class="enter-link" href="about.html">ENTER SITE</a>
+    <footer class="connect-line">
+      CONNECT → <a href="mailto:austin@mixedbyaustin.com">austin@mixedbyaustin.com</a> | <a href="https://instagram.com/austnwashere" target="_blank">@austnwashere</a> | <a href="https://soundcloud.com/mixedbyaustin" target="_blank">Mix Demos</a>
+    </footer>
   </div>
-<p><a href="about.html">About Me</a></p>
-
-  <div class="section">
-    <p><strong>Listen:</strong><br />
-      <a href="https://soundcloud.com/mixedbyaustin" target="_blank">Demo Mixes</a>
-    </p>
-  </div>
-
-  <div class="section">
-    <p><strong>Contact:</strong><br />
-      <a href="https://instagram.com/austnwashere" target="_blank">@austnwashere</a><br />
-      <a href="mailto:austin@mixedbyaustin.com">austin@mixedbyaustin.com</a>
-    </p>
-  </div>
-
-  <footer>
-    <p>© 2025 Austin Simard. All rights reserved.</p>
-    <p class="small-footer">Made by Austin with love ૮ ˶ᵔ ᵕ ᵔ˶ ა</p>
-  </footer>
 
   <div class="under-construction-banner">
     Under Construction ヽ༼ຈل͜ຈ༽ﾉ
@@ -129,17 +125,12 @@
     <source src="audio/website-BGM-loop.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
-<!-- mute toggle -->
- <div id="mute-toggle" aria-label="Toggle background audio">
-  🔈
-  <div style="font-size: 0.60rem; color: #888; margin-top: -1px;">Music muted ;[</div>
-</div>
 
+  <div id="mute-toggle" aria-label="Toggle background audio">🔈</div>
 
   <script>
     const audio = document.getElementById('bg-audio');
     const toggle = document.getElementById('mute-toggle');
-
     audio.volume = 0.1;
     audio.muted = true;
 

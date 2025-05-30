@@ -18,13 +18,6 @@
       align-items: center;
       justify-content: flex-start;
       min-height: 100vh;
-      overflow-x: hidden;
-      cursor: none;
-      animation: fadeSlideIn 1.2s ease forwards;
-      opacity: 0;
-      transform: translateY(15px);
-    }
-
     @keyframes fadeSlideIn {
       to {
         opacity: 1;
@@ -103,11 +96,6 @@
     .y2k-header {
       font-size: 2rem;
       margin-bottom: 1rem;
-      background: linear-gradient(90deg, #00f0ff, #ff00ff, #00ffcc, #ffff00);
-      background-size: 400% 100%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: rainbowBG 5s infinite linear;
       text-shadow:
         0 0 8px #00ffff,
         0 0 15px #ff00ff,
@@ -161,13 +149,6 @@
       text-shadow:
         0 0 10px #fff,
         0 0 18px currentColor,
-        0 0 30px currentColor;
-    }
-
-    a {
-      color: #00ffff;
-      text-decoration: none;
-      transition: color 0.3s ease, text-shadow 0.3s ease;
       cursor: pointer;
     }
     a:hover {

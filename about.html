@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Austin</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
@@ -18,6 +18,19 @@
       align-items: center;
       justify-content: flex-start;
       min-height: 100vh;
+      overflow-x: hidden;
+      cursor: url('https://i.imgur.com/0P6vZcX.png'), auto; /* pixelated pointer */
+      animation: fadeSlideIn 1.2s ease forwards;
+      opacity: 0;
+      transform: translateY(15px);
+    }
+
+    /* fade in + slide up */
+    @keyframes fadeSlideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @keyframes rainbowBG {
@@ -29,6 +42,17 @@
     @keyframes blink {
       0%, 50%, 100% { opacity: 1; }
       25%, 75% { opacity: 0; }
+    }
+
+    @keyframes floatAero {
+      0%, 100% {
+        transform: translateY(0);
+        box-shadow: 0 0 15px #00ffccaa, 0 0 40px #00ffff55;
+      }
+      50% {
+        transform: translateY(-10px);
+        box-shadow: 0 0 30px #00ffccdd, 0 0 60px #00ffff88;
+      }
     }
 
     .y2k-about {
@@ -44,23 +68,45 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: rainbowBG 5s infinite linear;
-      text-shadow: 1px 1px #000;
+      text-shadow:
+        0 0 8px #00ffff,
+        0 0 15px #ff00ff,
+        0 0 25px #00ffcc,
+        0 0 40px #ffff00;
+      font-weight: 700;
+      transition: text-shadow 0.3s ease;
+      cursor: default;
+    }
+    .y2k-header:hover {
+      text-shadow:
+        0 0 20px #00ffff,
+        0 0 30px #ff00ff,
+        0 0 40px #00ffcc,
+        0 0 60px #ffff00;
     }
 
     .y2k-window {
       background: #111 url('https://www.transparenttextures.com/patterns/45-degree-fabric-light.png');
       border: 2px solid #00ffcc;
-      border-radius: 8px;
-      padding: 1rem;
+      border-radius: 12px;
+      padding: 1.5rem;
       box-shadow: 0 0 12px #00ffffaa;
       font-size: 0.75rem;
       line-height: 1.6;
+      animation: floatAero 6s ease-in-out infinite;
+      transition: box-shadow 0.3s ease;
+      user-select: none;
+    }
+    .y2k-window:hover {
+      box-shadow: 0 0 25px #00ffffee, 0 0 75px #00ffffcc;
     }
 
     .blink {
       animation: blink 1.2s step-start infinite;
       font-weight: bold;
       color: #ff66ff;
+      text-shadow: 0 0 10px #ff66ff;
+      cursor: default;
     }
 
     .rainbow-text {
@@ -68,14 +114,27 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       font-weight: bold;
+      text-shadow:
+        0 0 6px #fff,
+        0 0 10px currentColor;
+      transition: text-shadow 0.3s ease;
+    }
+    .rainbow-text:hover {
+      text-shadow:
+        0 0 10px #fff,
+        0 0 18px currentColor,
+        0 0 30px currentColor;
     }
 
     a {
       color: #00ffff;
       text-decoration: none;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+      cursor: pointer;
     }
-
     a:hover {
+      color: #ff66ff;
+      text-shadow: 0 0 8px #ff66ff;
       text-decoration: underline;
     }
   </style>
@@ -83,20 +142,16 @@
 <body>
   <div class="y2k-about">
     <h1 class="y2k-header">~* About Me *~</h1>
-    <div class="y2k-window">
+    <div class="y2k-window" tabindex="0" aria-label="About Austin Simard">
       <p>💾 Greetings, traveler of cyberspace!</p>
       <p>I’m Austin, a sonic architect beaming signals from Vancouver, BC 🌐</p>
       <p>I produce & mix tracks that <span class="blink">SLAP</span>, sparkle, and glitch in all the right ways. 💥</p>
-      <p><i>Pop? Hip-hop? D&B? Something you dreamt?! I'm here for it. 💿</i></p>
+      <p><i>Pop? Hip-hop? Something you dreamt? I'm here for it. 💿</i></p>
       <p><span class="rainbow-text">Remote collabs welcome. Plug in & vibe. 🎧</span></p>
       <p>👾 <a href="/">Return to homepage</a></p>
     </div>
   </div>
 </body>
 </html>
-
-
-
-
 
 

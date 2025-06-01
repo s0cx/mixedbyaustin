@@ -22,6 +22,7 @@
       min-height: 100vh;
       overflow: hidden;
       cursor: url('https://cur.cursors-4u.net/people/peo-7/peo876.cur'), auto;
+      position: relative;
     }
 
     .terminal-box {
@@ -31,6 +32,7 @@
       max-width: 600px;
       width: 100%;
       box-shadow: 0 0 15px #00ffff66;
+      position: relative;
     }
 
     .title-line, .connect-line {
@@ -107,6 +109,48 @@
       color: #ff66ff;
       text-shadow: 0 0 8px #ff66ff;
     }
+
+    #nyancat {
+      position: absolute;
+      top: -30px;
+      left: -200px;
+      width: 60px;
+      z-index: 10;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .rainbow-dot {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      z-index: 5;
+      opacity: 0.8;
+      animation: fadeOut 1.5s ease-out forwards;
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 0.8;
+      }
+      to {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+    }
+
+    @keyframes nyan-fly {
+      0% {
+        transform: translateX(-200px);
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(110vw);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
@@ -114,7 +158,9 @@
     <div class="title-line">// AUSTIN SIMARD: MIX ENGINEER + PRODUCER</div>
     <a class="enter-link" href="about.html">ENTER SITE</a>
     <footer class="connect-line">
-      CONNECT → <a href="mailto:austin@mixedbyaustin.com">austin@mixedbyaustin.com</a> | <a href="https://instagram.com/austnwashere" target="_blank">@austnwashere</a> | <a href="https://soundcloud.com/mixedbyaustin" target="_blank">Mix Demos</a>
+      CONNECT → <a href="mailto:austin@mixedbyaustin.com">austin@mixedbyaustin.com</a> | 
+      <a href="https://instagram.com/austnwashere" target="_blank">@austnwashere</a> | 
+      <a href="https://soundcloud.com/mixedbyaustin" target="_blank">Mix Demos</a>
     </footer>
   </div>
 
@@ -129,9 +175,15 @@
 
   <div id="mute-toggle" aria-label="Toggle background audio">🔈</div>
 
+  <!-- NYAN CAT -->
+  <img id="nyancat" src="https://static.wikia.nocookie.net/nyancat/images/b/b9/OriginalNyan.gif" alt="Nyan Cat" />
+
   <script>
     const audio = document.getElementById('bg-audio');
     const toggle = document.getElementById('mute-toggle');
+    const nyancat = document.getElementById('nyancat');
+    const terminalBox = document.querySelector('.terminal-box');
+
     audio.volume = 0.1;
     audio.muted = true;
 
@@ -144,6 +196,47 @@
       audio.muted = !audio.muted;
       toggle.textContent = audio.muted ? '🔇' : '🔈';
     });
+
+    function flyNyanCat() {
+      nyancat.style.animation = 'none';
+      nyancat.offsetHeight; // Force reflow
+
+      // Repositioned above terminal box
+      const boxRect = terminalBox.getBoundingClientRect();
+      nyancat.style.top = `${boxRect.top - 40}px`;
+
+      nyancat.style.animation = 'nyan-fly 12s linear forwards';
+
+      let trailInterval = setInterval(() => {
+        const nyanRect = nyancat.getBoundingClientRect();
+        const trail = document.createElement('div');
+        trail.className = 'rainbow-dot';
+        trail.style.left = `${nyanRect.left + 20}px`;
+        trail.style.top = `${nyanRect.top + 30}px`;
+        trail.style.backgroundColor = getRandomRainbowColor();
+        document.body.appendChild(trail);
+        setTimeout(() => trail.remove(), 1500);
+      }, 100);
+
+      setTimeout(() => {
+        clearInterval(trailInterval);
+      }, 12000); // Stop trail after fly ends
+    }
+
+    function getRandomRainbowColor() {
+      const colors = ['#ff0000', '#ff7f00', '#ffff00', '#00ff00', '#0000ff', '#4b0082', '#8f00ff'];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    function randomNyanInterval() {
+      const delay = Math.random() * (45000 - 15000) + 15000;
+      setTimeout(() => {
+        flyNyanCat();
+        randomNyanInterval();
+      }, delay);
+    }
+
+    randomNyanInterval();
   </script>
 </body>
 </html>
